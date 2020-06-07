@@ -17,15 +17,25 @@ import {
   ComboboxOption,
 } from '@reach/combobox';
 
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
 import '@reach/combobox/styles.css';
 import Navbar from './Navbar';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  height: '90vh',
-  width: '90vw',
+  height: '100vh',
+  width: '100vw',
 };
 
+const options = {
+  disableDefaultUI: true,
+  zoomControl: true,
+  types: ['hospital', 'health'],
+};
 interface Iprop {}
 
 interface IpanTo {
@@ -141,6 +151,7 @@ const App: FC<Iprop> = ({ children }): any => {
           zoom={14}
           center={currentPosition}
           onLoad={onMapLoad}
+          options={options}
         >
           {markers &&
             markers.map((marker: any) => (
@@ -243,12 +254,21 @@ const Search: FC<IsearchProp> = ({
           </ComboboxPopover>
         </Combobox>
       </div>
-      <select value={radius} onChange={handleChange}>
-        <option value="100">100</option>
-        <option value="200">200</option>
-        <option value="300">300</option>
-        <option value="400">400</option>
-      </select>
+
+      <FormControl variant="outlined">
+        <InputLabel id="radius-input">Radius</InputLabel>
+        <Select
+          labelId="radius-input"
+          id="demo-simple-select-outlined"
+          value={radius}
+          onChange={handleChange}
+          label="Radius"
+        >
+          <MenuItem value={1000 * 100}>100KM</MenuItem>
+          <MenuItem value={1000 * 200}>200KM</MenuItem>
+          <MenuItem value={1000 * 500}>500KM</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 };
