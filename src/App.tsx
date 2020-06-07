@@ -22,32 +22,8 @@ import Navbar from './Navbar';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  height: '100vh',
-  width: '100vw',
-};
-
-const inputInput = {
-  padding: '1px 1px 1px 0',
-  // vertical padding + font size from searchIcon
-  paddingLeft: `calc(1em + ${4}px)`,
-  transition: 'width',
-  width: '100%',
-};
-const searchStyle = {
-  borderRadius: '5px',
-  backgroundColor: 'rgba(225, 225, 225, 0.15)',
-  '&:hover': {
-    backgroundColor: 'rgba(225, 225, 225, 0.25)',
-  },
-  marginRight: '2px',
-  marginLeft: 0,
-  width: '100%',
-};
-
-const options = {
-  disableDefaultUI: true,
-  zoomControl: true,
-  types: ['hospital', 'health'],
+  height: '90vh',
+  width: '90vw',
 };
 
 interface Iprop {}
@@ -68,6 +44,7 @@ const App: FC<Iprop> = ({ children }): any => {
   const [selected, setSelected] = React.useState<any>(null);
   const [searchReselt, setSearchReselt] = React.useState<[]>([]);
   const [currentPosition, setCurrentPosition] = useState<IpanTo | null>(null);
+  const [radius, setRadius] = useState(4000);
 
   const success = (position: any) => {
     const currentPos = {
@@ -88,7 +65,7 @@ const App: FC<Iprop> = ({ children }): any => {
   }, []);
 
   useEffect(() => {
-    if (google && currentPosition) {
+    if (google && currentPosition && radius) {
       const appMap = {
         center: currentPosition,
         zoom: 17,
@@ -98,7 +75,7 @@ const App: FC<Iprop> = ({ children }): any => {
       service.nearbySearch(
         {
           location: currentPosition,
-          radius: 4000,
+          radius,
           type: ['hospital'],
         },
         function (results: any, status: any) {
@@ -107,7 +84,7 @@ const App: FC<Iprop> = ({ children }): any => {
         }
       );
     }
-  }, [google, currentPosition]);
+  }, [google, currentPosition, radius]);
 
   useEffect(() => {
     if (searchReselt) {
@@ -127,6 +104,21 @@ const App: FC<Iprop> = ({ children }): any => {
     mapRef.current.setZoom(14);
   }, []);
 
+  interface IradiusLatLng {
+    radius: number;
+    lat: number;
+    lng: number;
+  }
+  const getRadiusAndCurrentLatLng = (radiusLatLng: IradiusLatLng) => {
+    console.log('radiusLatLng', radiusLatLng);
+    const currentPos = {
+      lat: radiusLatLng.lat,
+      lng: radiusLatLng.lng,
+    };
+    setCurrentPosition(currentPos);
+    setRadius(+radiusLatLng.radius * 10);
+  };
+
   if (loadError) return 'Error';
   if (!isLoaded) return 'Loading...';
 
@@ -135,7 +127,11 @@ const App: FC<Iprop> = ({ children }): any => {
       <Navbar />
 
       {currentPosition && (
-        <Search panTo={panTo} currentPosition={currentPosition as IpanTo} />
+        <Search
+          panTo={panTo}
+          currentPosition={currentPosition as IpanTo}
+          radiusAndCurrentLatLng={getRadiusAndCurrentLatLng}
+        />
       )}
 
       {currentPosition && (
@@ -144,7 +140,6 @@ const App: FC<Iprop> = ({ children }): any => {
           mapContainerStyle={mapContainerStyle}
           zoom={14}
           center={currentPosition}
-          options={options}
           onLoad={onMapLoad}
         >
           {markers &&
@@ -181,9 +176,15 @@ export default App;
 interface IsearchProp {
   panTo: (obj: IpanTo) => void;
   currentPosition: IpanTo;
+  radiusAndCurrentLatLng: (data: any) => void;
 }
 
-const Search: FC<IsearchProp> = ({ panTo, currentPosition }) => {
+const Search: FC<IsearchProp> = ({
+  panTo,
+  currentPosition,
+  radiusAndCurrentLatLng,
+}) => {
+  const [radius, setRadius] = useState('100');
   const {
     ready,
     value,
@@ -196,12 +197,16 @@ const Search: FC<IsearchProp> = ({ panTo, currentPosition }) => {
         lat: () => currentPosition.lat,
         lng: () => currentPosition.lng,
       } as any,
-      radius: 100 * 1000,
+      radius: +radius * 1000,
     },
   });
+  useEffect(() => {}, [radius]);
 
   const handleInput = (e: any) => {
     setValue(e?.target?.value);
+  };
+  const handleChange = (e: any) => {
+    setRadius(e?.target?.value);
   };
 
   const handleSelect = async (address: string) => {
@@ -211,6 +216,7 @@ const Search: FC<IsearchProp> = ({ panTo, currentPosition }) => {
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
+      radiusAndCurrentLatLng({ radius, lat, lng });
       panTo({ lat, lng });
     } catch (error) {
       console.log('😱 Error: ', error);
@@ -218,24 +224,31 @@ const Search: FC<IsearchProp> = ({ panTo, currentPosition }) => {
   };
 
   return (
-    <div style={searchStyle}>
-      <Combobox onSelect={handleSelect}>
-        <ComboboxInput
-          style={inputInput}
-          value={value}
-          onChange={handleInput}
-          disabled={!ready}
-          placeholder="Search your location"
-        />
-        <ComboboxPopover>
-          <ComboboxList>
-            {status === 'OK' &&
-              data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
-              ))}
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
+    <div>
+      <div className="search">
+        <Combobox onSelect={handleSelect}>
+          <ComboboxInput
+            value={value}
+            onChange={handleInput}
+            disabled={!ready}
+            placeholder="Search your location"
+          />
+          <ComboboxPopover>
+            <ComboboxList>
+              {status === 'OK' &&
+                data.map(({ id, description }) => (
+                  <ComboboxOption key={id} value={description} />
+                ))}
+            </ComboboxList>
+          </ComboboxPopover>
+        </Combobox>
+      </div>
+      <select value={radius} onChange={handleChange}>
+        <option value="100">100</option>
+        <option value="200">200</option>
+        <option value="300">300</option>
+        <option value="400">400</option>
+      </select>
     </div>
   );
 };
