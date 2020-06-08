@@ -17,9 +17,9 @@ import {
   ComboboxOption,
 } from '@reach/combobox';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import '@reach/combobox/styles.css';
 import './searchStyles.css';
@@ -195,7 +195,7 @@ const Search: FC<IsearchProp> = ({
   currentPosition,
   radiusAndCurrentLatLng,
 }) => {
-  const [radius, setRadius] = useState('100');
+  const [radius, setRadius] = useState('400000');
   const {
     ready,
     value,
@@ -208,7 +208,7 @@ const Search: FC<IsearchProp> = ({
         lat: () => currentPosition.lat,
         lng: () => currentPosition.lng,
       } as any,
-      radius: +radius * 1000,
+      radius: +radius,
     },
   });
   useEffect(() => {}, [radius]);
@@ -255,7 +255,6 @@ const Search: FC<IsearchProp> = ({
         </ComboboxPopover>
 
         <FormControl variant="outlined" className="select">
-          <InputLabel id="radius-select-outlined-label">Radius</InputLabel>
           <Select
             labelId="radius-select-outlined-label"
             className="selectSelect"
@@ -264,13 +263,12 @@ const Search: FC<IsearchProp> = ({
             onChange={handleChange}
             label="Radius"
           >
-            <MenuItem value="" disabled>
-              Radius
-            </MenuItem>
             <MenuItem value={1000 * 100}>100KM</MenuItem>
             <MenuItem value={1000 * 200}>200KM</MenuItem>
+            <MenuItem value={1000 * 400}>400KM</MenuItem>
             <MenuItem value={1000 * 500}>500KM</MenuItem>
           </Select>
+          <FormHelperText>Select Radius</FormHelperText>
         </FormControl>
       </Combobox>
     </div>

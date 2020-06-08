@@ -1,3 +1,9 @@
+.MuiOutlinedInput-input {
+  padding: 6px 16px !important;
+}
+.MuiSelect-outlined.MuiSelect-outlined {
+  padding-right: 32px !important;
+}
 .container {
   position: absolute;
   top: 1em;
@@ -6,40 +12,39 @@
 .input {
   padding: 10px;
   background-color: #fff;
+  margin-right: 1em !important;
 }
 .select {
   background-color: #fff;
-  margin-left: 5px;
-  margin-top: -5px;
 }
-.selectSelect {
+/* .selectSelect {
   padding: 2px;
-}
+} */
 
 @media screen and (max-width: 860px) {
   .container {
-    left: 2em;
+    left: 1em;
   }
 }
 @media screen and (max-width: 1020px) {
   .container {
-    left: 2em;
+    left: 1em;
   }
 }
 
 @media screen and (max-width: 767px) {
   .container {
-    left: 2em;
+    left: 1em;
   }
 }
 @media screen and (max-width: 620px) {
   .container {
-    left: 2em;
+    left: 1em;
   }
 }
 
 @media screen and (max-width: 420px) {
   .container {
-    left: 2em;
+    left: 1em;
   }
 }
