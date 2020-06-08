@@ -16,7 +16,6 @@ import {
   ComboboxList,
   ComboboxOption,
 } from '@reach/combobox';
-
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -150,8 +149,8 @@ const App: FC<Iprop> = ({ children }): any => {
           mapContainerStyle={mapContainerStyle}
           zoom={14}
           center={currentPosition}
-          onLoad={onMapLoad}
           options={options}
+          onLoad={onMapLoad}
         >
           {markers &&
             markers.map((marker: any) => (
@@ -234,41 +233,65 @@ const Search: FC<IsearchProp> = ({
     }
   };
 
-  return (
-    <div>
-      <div className="search">
-        <Combobox onSelect={handleSelect}>
-          <ComboboxInput
-            value={value}
-            onChange={handleInput}
-            disabled={!ready}
-            placeholder="Search your location"
-          />
-          <ComboboxPopover>
-            <ComboboxList>
-              {status === 'OK' &&
-                data.map(({ id, description }) => (
-                  <ComboboxOption key={id} value={description} />
-                ))}
-            </ComboboxList>
-          </ComboboxPopover>
-        </Combobox>
-      </div>
+  const searchStyle = {
+    container: {
+      position: 'absolute' as 'absolute',
+      top: '1em',
+      left: '25em',
+    },
+    input: {
+      padding: '10px',
+      backgroundColor: '#fff',
+    },
+    select: {
+      backgroundColor: '#fff',
+      marginLeft: '5px',
+      marginTop: '-5px',
+    },
+    selectSelect: {
+      padding: '2px',
+    },
+  };
 
-      <FormControl variant="outlined">
-        <InputLabel id="radius-input">Radius</InputLabel>
-        <Select
-          labelId="radius-input"
-          id="demo-simple-select-outlined"
-          value={radius}
-          onChange={handleChange}
-          label="Radius"
-        >
-          <MenuItem value={1000 * 100}>100KM</MenuItem>
-          <MenuItem value={1000 * 200}>200KM</MenuItem>
-          <MenuItem value={1000 * 500}>500KM</MenuItem>
-        </Select>
-      </FormControl>
+  return (
+    <div style={searchStyle.container}>
+      <Combobox onSelect={handleSelect}>
+        <ComboboxInput
+          style={searchStyle.input}
+          value={value}
+          onChange={handleInput}
+          disabled={!ready}
+          placeholder="Search your location"
+        />
+
+        <ComboboxPopover>
+          <ComboboxList>
+            {status === 'OK' &&
+              data.map(({ id, description }) => (
+                <ComboboxOption key={id} value={description} />
+              ))}
+          </ComboboxList>
+        </ComboboxPopover>
+
+        <FormControl variant="outlined" style={searchStyle.select}>
+          <InputLabel id="radius-select-outlined-label">Radius</InputLabel>
+          <Select
+            labelId="radius-select-outlined-label"
+            style={searchStyle.selectSelect}
+            id="radius-select-outlined"
+            value={radius}
+            onChange={handleChange}
+            label="Radius"
+          >
+            <MenuItem value="" disabled>
+              Radius
+            </MenuItem>
+            <MenuItem value={1000 * 100}>100KM</MenuItem>
+            <MenuItem value={1000 * 200}>200KM</MenuItem>
+            <MenuItem value={1000 * 500}>500KM</MenuItem>
+          </Select>
+        </FormControl>
+      </Combobox>
     </div>
   );
 };
