@@ -22,6 +22,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import '@reach/combobox/styles.css';
+import './searchStyles.css';
 import Navbar from './Navbar';
 
 const libraries = ['places'];
@@ -233,31 +234,11 @@ const Search: FC<IsearchProp> = ({
     }
   };
 
-  const searchStyle = {
-    container: {
-      position: 'absolute' as 'absolute',
-      top: '1em',
-      left: '25em',
-    },
-    input: {
-      padding: '10px',
-      backgroundColor: '#fff',
-    },
-    select: {
-      backgroundColor: '#fff',
-      marginLeft: '5px',
-      marginTop: '-5px',
-    },
-    selectSelect: {
-      padding: '2px',
-    },
-  };
-
   return (
-    <div style={searchStyle.container}>
+    <div className="container">
       <Combobox onSelect={handleSelect}>
         <ComboboxInput
-          style={searchStyle.input}
+          className="input"
           value={value}
           onChange={handleInput}
           disabled={!ready}
@@ -273,11 +254,11 @@ const Search: FC<IsearchProp> = ({
           </ComboboxList>
         </ComboboxPopover>
 
-        <FormControl variant="outlined" style={searchStyle.select}>
+        <FormControl variant="outlined" className="select">
           <InputLabel id="radius-select-outlined-label">Radius</InputLabel>
           <Select
             labelId="radius-select-outlined-label"
-            style={searchStyle.selectSelect}
+            className="selectSelect"
             id="radius-select-outlined"
             value={radius}
             onChange={handleChange}
