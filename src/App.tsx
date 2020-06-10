@@ -73,7 +73,7 @@ const App: FC<Iprop> = ({ children }): any => {
         {
           location: currentPosition,
           radius,
-          type: ['hospital', 'health', 'pharmacy', 'doctor', 'drugstore'],
+          type: ['hospital'],
         },
         function (results: any, status: any) {
           if (status !== 'OK') return;
