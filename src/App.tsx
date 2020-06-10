@@ -113,7 +113,7 @@ const App: FC<Iprop> = ({ children }): any => {
       lng: radiusLatLng.lng,
     };
     setCurrentPosition(currentPos);
-    setRadius(+radiusLatLng.radius * 10);
+    setRadius(+radiusLatLng.radius);
   };
 
   if (loadError) return 'Error';

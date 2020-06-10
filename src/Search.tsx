@@ -34,7 +34,7 @@ const Search: FC<IsearchProp> = ({
   currentPosition,
   radiusAndCurrentLatLng,
 }) => {
-  const [radius, setRadius] = useState('400000');
+  const [radius, setRadius] = useState('5000');
   const {
     ready,
     value,
@@ -102,10 +102,10 @@ const Search: FC<IsearchProp> = ({
             onChange={handleChange}
             label="Radius"
           >
-            <MenuItem value={1000 * 100}>100KM</MenuItem>
-            <MenuItem value={1000 * 200}>200KM</MenuItem>
-            <MenuItem value={1000 * 400}>400KM</MenuItem>
-            <MenuItem value={1000 * 500}>500KM</MenuItem>
+            <MenuItem value={1000 * 5}>5KM</MenuItem>
+            <MenuItem value={1000 * 10}>10KM</MenuItem>
+            <MenuItem value={1000 * 20}>20KM</MenuItem>
+            <MenuItem value={1000 * 50}>50KM</MenuItem>
           </Select>
           <FormHelperText>Select Radius</FormHelperText>
         </FormControl>
