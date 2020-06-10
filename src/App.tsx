@@ -11,6 +11,7 @@ import './searchStyles.css';
 import Navbar from './Navbar';
 import Search from './Search';
 import SearchHistory from './SearchHistory';
+import Error from './Error';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -116,7 +117,13 @@ const App: FC<Iprop> = ({ children }): any => {
     setRadius(+radiusLatLng.radius);
   };
 
-  if (loadError) return 'Error';
+  if (loadError) {
+    return (
+      <div>
+        <Error />
+      </div>
+    );
+  }
   if (!isLoaded) return 'Loading...';
 
   return (
