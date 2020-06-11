@@ -17,7 +17,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 import '@reach/combobox/styles.css';
 import './searchStyles.css';
-import { db } from './Firebase';
+import { searchHistoryRef } from './Firebase';
 
 interface IpanTo {
   lat: number | string;
@@ -76,7 +76,7 @@ const Search: FC<IsearchProp> = ({
         lat: lat,
         lng: lng,
       };
-      db.collection('searchHistory').add(searched);
+      searchHistoryRef.push(searched);
     } catch (error) {
       console.log('😱 Error: ', error);
     }

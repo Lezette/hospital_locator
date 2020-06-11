@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -26,27 +26,12 @@ interface IsearchProp {
   radiusAndCurrentLatLng: (data: any) => void;
 }
 
-const SearchHistory: FC<IsearchProp> = ({
+const SearchHistory: React.FC<IsearchProp> = ({
   panTo,
   currentPosition,
   radiusAndCurrentLatLng,
 }) => {
-  const [histories, setHistory] = useState<any>([]);
-
-  useEffect(() => {
-    const unsub = db.collection('searchHistory').onSnapshot((snapshot) => {
-      const allHistory = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setHistory(allHistory);
-    });
-    return () => {
-      unsub();
-    };
-  }, []);
-
-  const [state, setState] = useState(false);
+  const [state, setState] = React.useState(false);
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent
@@ -62,9 +47,14 @@ const SearchHistory: FC<IsearchProp> = ({
     setState(open);
   };
 
-  const showHistory = () => {
-    console.log('WTF HEre are the data');
-  };
+  const searchHistory = [
+    'Suspendisse at augue interdum',
+    'commodo turpis non, rutrum enim',
+    'In nec lacus',
+    'facilisis nisi condimentum malesuada',
+    'Vivamus ultricies neque',
+    'Maecenas tincidunt lacus quis massa',
+  ];
 
   const list = (anchor: Anchor) => (
     <div
@@ -73,9 +63,9 @@ const SearchHistory: FC<IsearchProp> = ({
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {histories.map((history: any) => (
-          <ListItem button key={history.id} onClick={showHistory}>
-            <ListItemText primary={history.address} />
+        {searchHistory.map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemText primary={text} />
             <Divider />
           </ListItem>
         ))}

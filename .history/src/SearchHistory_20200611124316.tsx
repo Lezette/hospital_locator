@@ -62,8 +62,8 @@ const SearchHistory: FC<IsearchProp> = ({
     setState(open);
   };
 
-  const showHistory = () => {
-    console.log('WTF HEre are the data');
+  const showHistory = (radius: any, lat: any, lng: any) => {
+    console.log('WTF HEre are the data', radius, lat, lng);
   };
 
   const list = (anchor: Anchor) => (
@@ -74,7 +74,11 @@ const SearchHistory: FC<IsearchProp> = ({
     >
       <List>
         {histories.map((history: any) => (
-          <ListItem button key={history.id} onClick={showHistory}>
+          <ListItem
+            button
+            key={history.id}
+            onClick={showHistory(history.radius, history.lat, history.lng)}
+          >
             <ListItemText primary={history.address} />
             <Divider />
           </ListItem>

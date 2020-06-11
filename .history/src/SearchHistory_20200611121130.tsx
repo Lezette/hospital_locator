@@ -62,10 +62,6 @@ const SearchHistory: FC<IsearchProp> = ({
     setState(open);
   };
 
-  const showHistory = () => {
-    console.log('WTF HEre are the data');
-  };
-
   const list = (anchor: Anchor) => (
     <div
       role="presentation"
@@ -73,8 +69,8 @@ const SearchHistory: FC<IsearchProp> = ({
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {histories.map((history: any) => (
-          <ListItem button key={history.id} onClick={showHistory}>
+        {histories.map((history) => (
+          <ListItem button key={history.id}>
             <ListItemText primary={history.address} />
             <Divider />
           </ListItem>

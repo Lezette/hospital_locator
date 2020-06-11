@@ -129,7 +129,15 @@ const App: FC<Iprop> = ({ children }): any => {
   return (
     <div>
       <Navbar />
-      <SearchHistory />
+      
+      {currentPosition && (
+        <SearchHistory
+        panTo={panTo}
+          currentPosition={currentPosition as IpanTo}
+          radiusAndCurrentLatLng={getRadiusAndCurrentLatLng} 
+        />
+      )}
+
       {currentPosition && (
         <Search
           panTo={panTo}
