@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+//import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -11,13 +12,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Copyright from '../Copyright';
+import { auth } from '../../Firebase';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: 'url(https://source.unsplash.com/TqALOjrYE1A)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light'
@@ -44,6 +46,31 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+
+const handleEmailChange = (e: any) => {
+  const value = e.target.value;
+  setEmail(value);
+}
+const handlePasswordChange = (e: any) => {
+  const value = e.target.value;
+  setPassword(value);
+}
+const addUser = (event: any) => {
+  event.preventDefault();
+  if(email.trim() && password.trim()) {
+    auth().createUserWithEmailAndPassword(email, password).then(result => {
+      localStorage.chat_user = JSON.stringify(result.user)
+      return ({
+        status: 'success',
+        message: 'user signed up successfully',
+        data: result.user
+      })}).catch(error =>({
+        status: 'fail',
+        message: error.message
+      })
+}};
 
 const Signup = () => {
   const classes = useStyles();
@@ -59,7 +86,7 @@ const Signup = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={addUser}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -70,6 +97,7 @@ const Signup = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={handleEmailChange}
             />
             <TextField
               variant="outlined"
@@ -80,6 +108,7 @@ const Signup = () => {
               label="Password"
               type="password"
               id="password"
+              onChange={handlePasswordChange}
             />
             <Button
               type="submit"
@@ -92,7 +121,7 @@ const Signup = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link href="/">
                   {'Not a first time user? Sign in'}
                 </Link>
               </Grid>
