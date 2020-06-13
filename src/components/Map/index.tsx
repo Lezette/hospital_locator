@@ -1,25 +1,15 @@
-import React, {
-  Component,
-  FC,
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-} from 'react';
+import React, { FC, useState, useRef, useCallback, useEffect } from 'react';
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
 } from '@react-google-maps/api';
-
 import '@reach/combobox/styles.css';
-import './searchStyles.css';
 import Navbar from '../Navbar';
 import Search from '../Search';
 import SearchHistory from '../SearchHistory';
 import Error from '../Error';
-import { Route, Switch } from 'react-router-dom';
 
 const libraries = ['places'];
 const mapContainerStyle = {
