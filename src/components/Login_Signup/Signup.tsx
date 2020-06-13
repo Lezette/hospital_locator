@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -14,6 +14,10 @@ import {
   useHistory,
   useLocation,
 } from 'react-router-dom';
+
+// useEffect(() => {
+
+// })
 
 const Copyright = () => {
   return (
@@ -63,9 +67,9 @@ const Signup = () => {
         </Button>
         <Grid container justify="flex-end">
           <Grid item>
-            <Link to="/Login" variant="body2">
+            {/* <Link to="/Login" variant="body2">
               Already have an account? Sign in
-            </Link>
+            </Link> */}
           </Grid>
         </Grid>
       </Grid>

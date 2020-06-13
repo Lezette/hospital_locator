@@ -1,4 +1,11 @@
-import React, { FC, useState, useRef, useCallback, useEffect } from 'react';
+import React, {
+  Component,
+  FC,
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+} from 'react';
 import {
   GoogleMap,
   useLoadScript,
@@ -12,6 +19,10 @@ import Navbar from './Navbar';
 import Search from './Search';
 import SearchHistory from './SearchHistory';
 import Error from './Error';
+import { Route, Switch } from 'react-router-dom';
+
+import Login from './components/Login_Signup/Login';
+import Signup from './components/Login_Signup/Signup';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -31,7 +42,7 @@ interface IpanTo {
   lng: number | string;
 }
 
-const App: FC<Iprop> = ({ children }): any => {
+const Home: FC<Iprop> = ({ children }): any => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -129,12 +140,12 @@ const App: FC<Iprop> = ({ children }): any => {
   return (
     <div>
       <Navbar />
-      
+
       {currentPosition && (
         <SearchHistory
-        panTo={panTo}
+          panTo={panTo}
           currentPosition={currentPosition as IpanTo}
-          radiusAndCurrentLatLng={getRadiusAndCurrentLatLng} 
+          radiusAndCurrentLatLng={getRadiusAndCurrentLatLng}
         />
       )}
 
@@ -183,5 +194,15 @@ const App: FC<Iprop> = ({ children }): any => {
     </div>
   );
 };
-
+const App = () => {
+  return (
+    <div>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+      </Switch>
+    </div>
+  );
+};
 export default App;

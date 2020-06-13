@@ -55,7 +55,7 @@ const Login = () => {
         </Button>
         <Grid container justify="flex-end">
           <Grid item>
-            <Link to="/Signup" variant="body2">
+            <Link href="#" variant="body2">
               First time user? Sign up
             </Link>
           </Grid>
