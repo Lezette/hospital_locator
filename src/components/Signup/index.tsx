@@ -1,10 +1,9 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-//import Link from '@material-ui/core/Link';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -46,34 +45,41 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-
-const handleEmailChange = (e: any) => {
-  const value = e.target.value;
-  setEmail(value);
-}
-const handlePasswordChange = (e: any) => {
-  const value = e.target.value;
-  setPassword(value);
-}
-const addUser = (event: any) => {
-  event.preventDefault();
-  if(email.trim() && password.trim()) {
-    auth().createUserWithEmailAndPassword(email, password).then(result => {
-      localStorage.chat_user = JSON.stringify(result.user)
-      return ({
-        status: 'success',
-        message: 'user signed up successfully',
-        data: result.user
-      })}).catch(error =>({
-        status: 'fail',
-        message: error.message
-      })
-}};
 
 const Signup = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmailChange = (e: any) => {
+    const value = e.target.value;
+    setEmail(value);
+  };
+  const handlePasswordChange = (e: any) => {
+    const value = e.target.value;
+    setPassword(value);
+  };
+  const addUser = (event: any) => {
+    event.preventDefault();
+    if (email.trim() && password.trim()) {
+      auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((result) => {
+          console.log('result', result);
+          localStorage.user = JSON.stringify(result.user);
+          return {
+            status: 'success',
+            message: 'user signed up successfully',
+            data: result.user,
+          };
+        })
+        .catch((error) => ({
+          status: 'fail',
+          message: error.message,
+        }));
+    }
+  };
   const classes = useStyles();
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -121,9 +127,7 @@ const Signup = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/">
-                  {'Not a first time user? Sign in'}
-                </Link>
+                <Link to="/">{'Not a first time user? Sign in'}</Link>
               </Grid>
             </Grid>
             <Box mt={5}>
