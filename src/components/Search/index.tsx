@@ -16,8 +16,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 import '@reach/combobox/styles.css';
-import './searchStyles.css';
-import { db } from './Firebase';
+import '../../styles/searchStyles.css';
+import { db } from '../../Firebase';
 
 interface IpanTo {
   lat: number | string;
