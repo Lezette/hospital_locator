@@ -11,12 +11,12 @@ screenshots here
 
 ## Tech/framework used
 
-This app was built with
-
-- React TypeScript
-- Google Maps API and Google Places API
-- Firebase (Firestore and Auth)
-- GraphQL
+- [React](https://reactjs.org/) TypeScript - The web library used
+- [Google Maps API](https://cloud.google.com/maps-platform/maps/) - Used to render the Map
+- [Google Places API](https://cloud.google.com/maps-platform/places/) - Used to get specific places
+- Firestore - NoSQL Database
+- FireAth - User Authentication
+- GraphQL - To
 - Material UI package
 
 ## Getting Started

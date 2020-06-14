@@ -15,19 +15,18 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const [user, setUser] = useState(localStorage.user);
-const history = useHistory();
-useEffect(() => {
-  if (!user) {
-    history.push('/');
-  }
-}, [user]);
-const signOut = () => {
-  setUser(localStorage.clear());
-  auth().signOut();
-};
-
 const Logout = () => {
+  const [user, setUser] = useState(localStorage.user);
+  const history = useHistory();
+  useEffect(() => {
+    if (!user) {
+      history.push('/');
+    }
+  }, [user]);
+  const signOut = () => {
+    setUser(localStorage.clear());
+    auth().signOut();
+  };
   const classes = useStyles();
 
   return (
