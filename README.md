@@ -3,41 +3,46 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Hospital Finder
 
 An application that helps users find the nearest health center around them. Built with React TypeScript <br />To see the app running live click [here](https://hospital-map-finder.herokuapp.com/)
+<br />
+
+## Screenshots
+
+screenshots here
+
+## Tech/framework used
+
+This app was built with
+
+- React TypeScript
+- Google Maps API and Google Places API
+- Firebase (Firestore and Auth)
+- GraphQL
+- Material UI package
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-#### Prerequisites
+#### Development setup
 
-Simply make a pull request and run `npm install`. To run it on your local machine simply run `npm run dev`
+Simply make a pull request, create a `.env.local` file and add the required keys from google cloud console and firebase,
+a sample `env` file would look like this
 
-##### Us
+```sh
+REACT_APP_GOOGLE_MAPS_API_KEY = "YOUR_GOOGLE_MAP_API_KEY"
+REACT_APP_API_KEY = "YOUR_FIREBASE_API_KEY"
+REACT_APP_AUTH_DOMAIN = "YOUR_FIREBASE_AUTH_DOMAIN"
+REACT_APP_DATABASE_URL = "YOUR_DATABASE_URL"
+REACT_APP_PROJECT_ID = "YOUR_PROJECT_ID"
+REACT_APP_STORAGE_BUCKET = "YOUR_APP_STORAGE_BUCKET"
+REACT_APP_MESSAGING_SENDER_ID = "YOUR_APP_MESSAGING_SENDER_ID"
+REACT_APP_APP_ID = "YOUR_APP_ID"
+REACT_APP_MEASUREMENT_ID: "YOUR_APP_MEASUREMENT_ID"
+```
 
-create a `.env.local` file and
+After you have that set up run
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+make install
+npm run dev
+```
