@@ -18,14 +18,13 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage:
-      'url(../../assets/bermuda-covid-19-the-doctor-makes-an-injection.png)',
+    backgroundImage: 'url(https://source.unsplash.com/TqALOjrYE1A)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light'
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
   paper: {
