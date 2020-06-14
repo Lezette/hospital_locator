@@ -1,5 +1,6 @@
 .popOver {
   margin: 3em;
   position: absolute;
-  top: 50%;
+  bottom: 30px;
+  z-index: 2;
 }

@@ -15,7 +15,7 @@ const Logout = () => {
     }
   }, [user]);
 
-  // Log user out
+  // Log user-out
   const signOut = () => {
     setUser(localStorage.clear());
     auth().signOut();
