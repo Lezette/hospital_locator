@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Hospital Finder
 
-An application that helps users find the nearest health center around them. Built with React TypeScript <br />To see the app running live click [here](https://hospital-map-finder.herokuapp.com/)
+An application that helps users find the nearest health center around them. Built with React TypeScript <br />View the live app [here](https://hospital-map-finder.herokuapp.com/)
 <br />
 
 ## Screenshots
