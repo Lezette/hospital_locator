@@ -1,21 +1,20 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Hospital Finder
 
-In the project directory, you can run:
+An application that helps users find the nearest health center around them. Built with React TypeScript <br />To see the app running live click [here](https://hospital-map-finder.herokuapp.com/)
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Prerequisites
 
-### `npm test`
+Simply make a pull request and run `npm install`. To run it on your local machine simply run `npm run dev`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### Us
+
+create a `.env.local` file and
 
 ### `npm run build`
 

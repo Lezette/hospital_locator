@@ -1,4 +1,5 @@
 import React, { FC, useState, useRef, useCallback, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   GoogleMap,
   useLoadScript,
@@ -10,6 +11,7 @@ import Navbar from '../Navbar';
 import Search from '../Search';
 import SearchHistory from '../SearchHistory';
 import Error from '../Error';
+import Logout from '../Logout';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -41,6 +43,8 @@ const Map: FC<Iprop> = ({ children }): any => {
   const [searchReselt, setSearchReselt] = React.useState<[]>([]);
   const [currentPosition, setCurrentPosition] = useState<IpanTo | null>(null);
   const [radius, setRadius] = useState(4000);
+  const [user, setUser] = useState(localStorage.user);
+  const history = useHistory();
 
   const success = (position: any) => {
     const currentPos = {
@@ -50,6 +54,11 @@ const Map: FC<Iprop> = ({ children }): any => {
     setCurrentPosition(currentPos);
   };
 
+  useEffect(() => {
+    if (!user) {
+      history.push('/');
+    }
+  }, [user]);
   useEffect(() => {
     navigator.geolocation && navigator.geolocation.getCurrentPosition(success);
   }, []);
@@ -106,7 +115,6 @@ const Map: FC<Iprop> = ({ children }): any => {
     lng: number;
   }
   const getRadiusAndCurrentLatLng = (radiusLatLng: IradiusLatLng) => {
-    console.log('radiusLatLng', radiusLatLng);
     const currentPos = {
       lat: radiusLatLng.lat,
       lng: radiusLatLng.lng,
@@ -177,6 +185,7 @@ const Map: FC<Iprop> = ({ children }): any => {
           ) : null}
         </GoogleMap>
       )}
+      <Logout />
       <div id="fake"></div>
     </div>
   );

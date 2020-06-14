@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -46,39 +46,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-
-const handleEmailChange = (e: any) => {
-  const value = e.target.value;
-  setEmail(value);
-};
-const handlePasswordChange = (e: any) => {
-  const value = e.target.value;
-  setPassword(value);
-};
-const setData = (event: any) => {
-  event.preventDefault();
-  if (email.trim() && password.trim()) {
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        localStorage.user = JSON.stringify(result.user);
-        return {
-          status: 'success',
-          message: 'user signed in successfully',
-          data: result.user,
-        };
-      })
-      .catch((error) => ({
-        status: 'fail',
-        message: error.message,
-      }));
-  }
-};
-
 const Login = () => {
   const classes = useStyles();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [disabled, setDisabled] = useState(false);
+  const [user, setUser] = useState(localStorage.user);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (user) {
+      history.push('/map');
+    }
+  }, [user]);
+  const handleEmailChange = (e: any) => {
+    const value = e.target.value;
+    setEmail(value);
+  };
+  const handlePasswordChange = (e: any) => {
+    const value = e.target.value;
+    setPassword(value);
+  };
+  const setData = (event: any) => {
+    event.preventDefault();
+    setDisabled(true);
+    if (email.trim() && password.trim()) {
+      auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((result) => {
+          setDisabled(false);
+          const user = JSON.stringify(result.user);
+          alert('Login Successful');
+          localStorage.user = user;
+          setUser(user);
+        })
+        .catch((error) => {
+          alert(error.message);
+          setDisabled(false);
+        });
+    }
+  };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -94,21 +102,22 @@ const Login = () => {
           <form className={classes.form} noValidate onSubmit={setData}>
             <TextField
               variant="outlined"
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
+              autoComplete="off"
               autoFocus
               onChange={handleEmailChange}
             />
             <TextField
               variant="outlined"
-              margin="normal"
+              margin="dense"
               required
               fullWidth
+              autoComplete="off"
               name="password"
               label="Password"
               type="password"
@@ -120,6 +129,7 @@ const Login = () => {
               fullWidth
               variant="contained"
               color="primary"
+              disabled={disabled}
               className={classes.submit}
             >
               Sign In
