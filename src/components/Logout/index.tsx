@@ -17,12 +17,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Logout = () => {
   const [user, setUser] = useState(localStorage.user);
+
   const history = useHistory();
   useEffect(() => {
     if (!user) {
       history.push('/');
     }
   }, [user]);
+
+  // Log user out
   const signOut = () => {
     setUser(localStorage.clear());
     auth().signOut();

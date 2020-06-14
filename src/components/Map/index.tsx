@@ -152,6 +152,7 @@ const Map: FC<Iprop> = ({ children }): any => {
         />
       )}
 
+      <Logout />
       {currentPosition && (
         <GoogleMap
           id="map"
@@ -185,7 +186,6 @@ const Map: FC<Iprop> = ({ children }): any => {
           ) : null}
         </GoogleMap>
       )}
-      <Logout />
       <div id="fake"></div>
     </div>
   );

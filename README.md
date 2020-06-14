@@ -15,9 +15,9 @@ screenshots here
 - [Google Maps API](https://cloud.google.com/maps-platform/maps/) - Used to render the Map
 - [Google Places API](https://cloud.google.com/maps-platform/places/) - Used to get specific places
 - Firestore - NoSQL Database
-- FireAth - User Authentication
-- GraphQL - To
-- Material UI package
+- [FireAth](https://firebase.google.com/docs/auth/) - User Authentication
+- [GraphQL](https://graphql.org/) - To fetch search from the database
+- [Material UI](material-ui.com) - A React UI framework
 
 ## Getting Started
 
@@ -46,3 +46,7 @@ After you have that set up run
 make install
 npm run dev
 ```
+
+# Acknowledgments
+
+This project was created based on a coding challenge by [Enye](https://www.enye.tech/)
