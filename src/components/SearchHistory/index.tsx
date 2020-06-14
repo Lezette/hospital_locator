@@ -5,7 +5,8 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { db } from '../../Firebase';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
 type Anchor = 'right';
 
@@ -26,25 +27,32 @@ interface IsearchProp {
   radiusAndCurrentLatLng: (data: any) => void;
 }
 
+const SEARCH_HISTORYS = gql`
+  {
+    searchHistorys {
+      id
+      address
+      lat
+      lng
+      radius
+    }
+  }
+`;
+
 const SearchHistory: FC<IsearchProp> = ({
   panTo,
   currentPosition,
   radiusAndCurrentLatLng,
 }) => {
   const [histories, setHistory] = useState<any>([]);
+  const { loading, data } = useQuery(SEARCH_HISTORYS);
 
   useEffect(() => {
-    const unsub = db.collection('searchHistory').onSnapshot((snapshot) => {
-      const allHistory = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setHistory(allHistory);
-    });
-    return () => {
-      unsub();
-    };
-  }, []);
+    if (!loading && data) {
+      const values = Object.values(data)[0];
+      setHistory(values);
+    }
+  }, [loading, data]);
 
   const [state, setState] = useState(false);
 
@@ -65,7 +73,6 @@ const SearchHistory: FC<IsearchProp> = ({
   const showHistory = (radius: any, lat: any, lng: any) => {
     radiusAndCurrentLatLng({ radius, lat, lng });
     panTo({ lat, lng });
-    console.log('Some data here duh!:', radius, lat, lng);
   };
 
   const list = (anchor: Anchor) => (
@@ -75,18 +82,19 @@ const SearchHistory: FC<IsearchProp> = ({
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {histories.map((history: any) => (
-          <ListItem
-            button
-            key={history.id}
-            onClick={() =>
-              showHistory(history.radius, history.lat, history.lng)
-            }
-          >
-            <ListItemText primary={history.address} />
-            <Divider />
-          </ListItem>
-        ))}
+        {histories &&
+          histories.map((history: any) => (
+            <ListItem
+              button
+              key={history.id}
+              onClick={() =>
+                showHistory(history.radius, +history.lat, +history.lng)
+              }
+            >
+              <ListItemText primary={history.address} />
+              <Divider />
+            </ListItem>
+          ))}
       </List>
     </div>
   );
