@@ -29,6 +29,7 @@ interface IsearchProp {
   panTo: (obj: IpanTo) => void;
   currentPosition: IpanTo;
   radiusAndCurrentLatLng: (data: any) => void;
+  hasAddedSearch: (data: any) => void;
 }
 
 interface SearchInput {
@@ -67,6 +68,7 @@ const Search: FC<IsearchProp> = ({
   panTo,
   currentPosition,
   radiusAndCurrentLatLng,
+  hasAddedSearch,
 }) => {
   const [radius, setRadius] = useState('5000');
   const [user] = useState(JSON.parse(localStorage.user));
@@ -114,7 +116,13 @@ const Search: FC<IsearchProp> = ({
         lng: String(lng),
         email: user.email,
       };
-      addSearch({ variables: searched });
+      addSearch({ variables: searched })
+        .then(() => {
+          hasAddedSearch(true);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     } catch (error) {
       console.log('😱 Error: ', error);
     }

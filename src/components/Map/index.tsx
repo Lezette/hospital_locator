@@ -44,6 +44,7 @@ const Map: FC<Iprop> = ({ children }): any => {
   const [currentPosition, setCurrentPosition] = useState<IpanTo | null>(null);
   const [radius, setRadius] = useState(4000);
   const [user, setUser] = useState(localStorage.user);
+  const [loadHistory, setLoadHistory] = useState<Boolean>(false);
   const history = useHistory();
 
   const success = (position: any) => {
@@ -123,6 +124,11 @@ const Map: FC<Iprop> = ({ children }): any => {
     setRadius(+radiusLatLng.radius);
   };
 
+  const hasAddedSearch = (value: Boolean) => {
+    setLoadHistory(value);
+    setLoadHistory(false);
+  };
+
   if (loadError) {
     return (
       <div>
@@ -141,6 +147,7 @@ const Map: FC<Iprop> = ({ children }): any => {
           panTo={panTo}
           currentPosition={currentPosition as IpanTo}
           radiusAndCurrentLatLng={getRadiusAndCurrentLatLng}
+          reloadHistory={loadHistory}
         />
       )}
 
@@ -149,6 +156,7 @@ const Map: FC<Iprop> = ({ children }): any => {
           panTo={panTo}
           currentPosition={currentPosition as IpanTo}
           radiusAndCurrentLatLng={getRadiusAndCurrentLatLng}
+          hasAddedSearch={hasAddedSearch}
         />
       )}
 

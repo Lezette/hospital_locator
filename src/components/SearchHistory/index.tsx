@@ -25,6 +25,7 @@ interface IsearchProp {
   panTo: (obj: IpanTo) => void;
   currentPosition: IpanTo;
   radiusAndCurrentLatLng: (data: any) => void;
+  reloadHistory: Boolean;
 }
 
 const GET_SEARCH_BY_EMAIL = gql`
@@ -44,6 +45,7 @@ const SearchHistory: FC<IsearchProp> = ({
   panTo,
   currentPosition,
   radiusAndCurrentLatLng,
+  reloadHistory,
 }) => {
   const [histories, setHistory] = useState<any>([]);
   const [user] = useState(JSON.parse(localStorage.user));
@@ -62,10 +64,12 @@ const SearchHistory: FC<IsearchProp> = ({
   }, [error, data]);
 
   useEffect(() => {
-    if (user.email) {
-      getSearchbyEmail({ variables: { email: user.email } });
+    if (user.email || reloadHistory) {
+      getSearchbyEmail({ variables: { email: user.email } }).catch((e) => {
+        console.error(e);
+      });
     }
-  }, [user]);
+  }, [user, reloadHistory]);
 
   const [state, setState] = useState(false);
 
@@ -94,21 +98,23 @@ const SearchHistory: FC<IsearchProp> = ({
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {histories &&
-          histories.map((history: any) => (
-            <ListItem
-              button
-              key={history.id}
-              onClick={() =>
-                showHistory(history.radius, +history.lat, +history.lng)
-              }
-            >
-              <ListItemText primary={history.address} />
-              <Divider />
-            </ListItem>
-          ))}
-      </List>
+      {
+        <List>
+          {histories &&
+            histories.map((history: any, index: number) => (
+              <ListItem
+                button
+                key={index}
+                onClick={() =>
+                  showHistory(history.radius, +history.lat, +history.lng)
+                }
+              >
+                <ListItemText primary={history.address} />
+                <Divider />
+              </ListItem>
+            ))}
+        </List>
+      }
     </div>
   );
 
