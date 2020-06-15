@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hospital-finder-1992e",
+  "private_key_id": "9d47272b1f7741679897677cd4775a7ff08a61fe",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCrEAweNPa+GebI\nUiNxYUmepgl0hkKjWHzAb9KSer1fz4l5qr/BKeK3L9ZpLDAG+rRU/5fao+NfHX/L\no5WeonwJwFkpY+pUfoRQ22mxYiuIrheR7HPtUyKNTY42wz7cj7K0GT4zniUP+9hC\nwQitFtG/eGokWs9npJEmXY8jA1ONN5JOD4a66WotUHNHj/fUuSSnFuw/mBhfWcAq\nclhk47jYNnf9tDnIWq1WSSVNwABuqpy4bBp3livQm2IVl3vwwBZZA4sdSM+rzpA0\nCiZHjoxgVuJ9s0zZyoUYdLlYl5MW2kYWvJWVeFLiFMPgBqe5MorXjnn0VNtrDKQ2\nGLL6a7UbAgMBAAECggEAP72HBmpt1oAIQnR4yHKb4AW2WDj+86axNXN1XydlESJf\n83nwYaWd2Ox2VFImwzL/pvxmNQ4EVxjC2bpmsemRloCZuJaGZl2OKCLZy0LtPczA\n85rLx47GvSg86aLu9XiF+h2907YF0WLiPl13QifSmCniQxGjXtcvTsBl6YH/zApg\niHNQOn5uV4yTWw8TqisZau1E4YFl+laeJSjxmkQ0+x1shsZ1TH/79I25GSz0hyUi\nSvvlhOCjKPOUBSEJgna+obvFpyFNaw455jImd5ydjDnI0LWICHgBZjwihrxRuFSC\nweRUrebNU9EN8MhXjFS3WjsCV1cYxj+xS7e0UkgMgQKBgQDiOwm0EPIYeWkR6ED3\n2tLFoH8dLYFtnDg2CpIWV7RS6TuqMq7BKwpW8z3klDOTbFl/8OcYLqAiGJDkVVf/\nAF6sx7ns3RjDqzy4tRAiub/0Dd8W/mFj8ftiExWAXdo/NWRVlID73XXHcP+ErPo+\nwuqjpzN+x4DXVU4uRnQrlUh/0QKBgQDBkpWFBvy4P+3OvKrjXWti8jo3fwxQprx5\n8NY/wOPtTMIdS66V5QFqQeZAMPOliJGBla4uhBsQdBTBK+ui+jCsx+afBFxHwLWv\nMbGhfxkjsrX4bFd6pKHfJnDeSmHTTsxUqT1rJmHzMrQyI5fgC1QRIf1W0M/9PFv3\nGG7QAH6tKwKBgDk+ZRMqIogs2HhOg3nz5ddZ6DAy3ogkulh6TkLXCGreV1mWn3+D\na4da3zNiiLZp+S+VfnQxABYAj1Engy+kIVCo7RPRUj3Yq3G1ZxLSW47en6+KyIvo\npApJ9+vWU64gzXWWMRkKDY5culsRBfUxjvvACBixVJmoHTM6YpTQnlqxAoGAaY3e\nPLkPrAUoTziwUuVJPp5pwoNkGsKhOjlrCz7Ky0a0/zaa0CAdgmzG+q/23Ig5GBmf\n7ruY6oLyIlgp2ShmzIEBMCs3iuT57bvCahcdhUrZUcr6dOU7Y6zZlU2oRIrOf0f+\nNuSqOuymOEUSd1iWEfWf6OxaznNQjtBi9MegTBsCgYBGUw07w2dDqapOhVSGqcz3\nY3fcgoJG32lLSpJNHIjcpiUGcc1aK1f3rXXuenebf6fJ4p7mirrv0YQ/sWaU7ePt\n8Q1/rjkWENg4CQbUMOTfifWiJ8NPg2GtnDRKZGAq09sFCPCrrCq7G03C2LWZjfhI\nngKv7e572Lq1ru6xQt89Yw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-t64xf@hospital-finder-1992e.iam.gserviceaccount.com",
+  "client_id": "118285763869161718516",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-t64xf%40hospital-finder-1992e.iam.gserviceaccount.com"
+}
