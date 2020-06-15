@@ -99,7 +99,12 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate onSubmit={setData}>
+          <form
+            data-testid="login-form"
+            className={classes.form}
+            noValidate
+            onSubmit={setData}
+          >
             <TextField
               variant="outlined"
               margin="dense"
