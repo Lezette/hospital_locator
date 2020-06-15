@@ -12,11 +12,16 @@
     "node": "12"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.2.1",
+    "@types/jest": "^26.0.0",
     "apollo-server-express": "^2.14.4",
     "express": "^4.17.1",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.1",
-    "graphql": "^15.1.0"
+    "graphql": "^15.1.0",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"
