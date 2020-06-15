@@ -9,6 +9,7 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
+// const { ApolloServer } = require('apollo-server');
 const { ApolloServer, gql } = require('apollo-server-express');
 
 // Construct a schema, using GraphQL schema language
@@ -96,7 +97,12 @@ const resolvers = {
 
 // setup express cloud function
 const app = express();
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  playground: true,
+  introspection: true,
+});
 server.applyMiddleware({ app, path: '/', cors: true });
 
 exports.graphql = functions.https.onRequest(app);
