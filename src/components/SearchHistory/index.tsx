@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 
 type Anchor = 'right';
 
@@ -27,14 +27,15 @@ interface IsearchProp {
   radiusAndCurrentLatLng: (data: any) => void;
 }
 
-const SEARCH_HISTORYS = gql`
-  {
-    searchHistorys {
+const GET_SEARCH_BY_EMAIL = gql`
+  mutation GetSearchbyEmail($email: String) {
+    getSearchbyEmail(email: $email) {
       id
       address
       lat
       lng
       radius
+      email
     }
   }
 `;
@@ -45,14 +46,26 @@ const SearchHistory: FC<IsearchProp> = ({
   radiusAndCurrentLatLng,
 }) => {
   const [histories, setHistory] = useState<any>([]);
-  const { loading, data } = useQuery(SEARCH_HISTORYS);
+  const [user] = useState(JSON.parse(localStorage.user));
+  const [getSearchbyEmail, { error, data }] = useMutation<any>(
+    GET_SEARCH_BY_EMAIL
+  );
 
   useEffect(() => {
-    if (!loading && data) {
+    if (error) {
+      setHistory([]);
+    }
+    if (!error && data) {
       const values = Object.values(data)[0];
       setHistory(values);
     }
-  }, [loading, data]);
+  }, [error, data]);
+
+  useEffect(() => {
+    if (user.email) {
+      getSearchbyEmail({ variables: { email: user.email } });
+    }
+  }, [user]);
 
   const [state, setState] = useState(false);
 

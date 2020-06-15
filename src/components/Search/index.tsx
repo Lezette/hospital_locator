@@ -17,7 +17,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 import '@reach/combobox/styles.css';
 import '../../styles/searchStyles.css';
-import { db } from '../../Firebase';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 interface IpanTo {
   lat: number | string;
@@ -30,12 +31,48 @@ interface IsearchProp {
   radiusAndCurrentLatLng: (data: any) => void;
 }
 
+interface SearchInput {
+  radius: String;
+  address: String;
+  lat: Number;
+  lng: Number;
+  email: String;
+}
+
+const SAVE_SEARCH = gql`
+  mutation ADD_SEARCH(
+    $address: String
+    $lat: String
+    $lng: String
+    $radius: String
+    $email: String
+  ) {
+    addSearch(
+      address: $address
+      lat: $lat
+      lng: $lng
+      radius: $radius
+      email: $email
+    ) {
+      id
+      address
+      lat
+      lng
+      radius
+    }
+  }
+`;
+
 const Search: FC<IsearchProp> = ({
   panTo,
   currentPosition,
   radiusAndCurrentLatLng,
 }) => {
   const [radius, setRadius] = useState('5000');
+  const [user] = useState(JSON.parse(localStorage.user));
+
+  const [addSearch, results] = useMutation<any>(SAVE_SEARCH);
+
   const {
     ready,
     value,
@@ -70,13 +107,14 @@ const Search: FC<IsearchProp> = ({
       const { lat, lng } = await getLatLng(results[0]);
       radiusAndCurrentLatLng({ radius, lat, lng });
       panTo({ lat, lng });
-      const searched = {
+      const searched: any = {
         radius: radius,
         address: address,
-        lat: lat,
-        lng: lng,
+        lat: String(lat),
+        lng: String(lng),
+        email: user.email,
       };
-      db.collection('searchHistory').add(searched);
+      addSearch({ variables: searched });
     } catch (error) {
       console.log('😱 Error: ', error);
     }
