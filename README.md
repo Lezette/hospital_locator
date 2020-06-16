@@ -70,7 +70,7 @@ To run a basic test, simply run the command
 npm t
 ```
 
-### Additional Features
+# Additional Features
 
 Here are possible improvements that might be added to this application with time
 
