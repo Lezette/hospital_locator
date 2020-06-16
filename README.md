@@ -52,6 +52,24 @@ npm install
 npm run dev
 ```
 
+### Graphql Playground
+
+To run the graphql playground locally symply run the code below <br />
+Note that you would need to get a service account key from google cloud console.
+
+```sh
+cd functions
+firebase serve --only functions
+```
+
+#### Testing
+
+To run a basic test simply run the command
+
+```
+npm t
+```
+
 # Acknowledgments
 
 This project was created based on a coding challenge by [Enye](https://www.enye.tech/)
