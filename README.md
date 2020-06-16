@@ -54,7 +54,7 @@ npm run dev
 
 ### Graphql Playground
 
-To run the graphql playground locally, simply run the code below <br />
+To run the graphql playground locally, simply run the command below; Alternatively, you can view the playground running live [here](https://us-central1-hospital-finder-1992e.cloudfunctions.net/graphql)<br />
 Note that you would need to get a service account key from google cloud console.
 
 ```sh
@@ -80,4 +80,4 @@ Here are possible improvements that might be added to this application with time
 
 # Acknowledgments
 
-This project was created based on a coding challenge by [Enye](https://www.enye.tech/)
+This project was created based on a coding challenge by [Team Enye](https://www.enye.tech/)
