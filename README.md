@@ -9,9 +9,9 @@ An application that helps users find the nearest health center around them. Buil
 
 ![image](https://user-images.githubusercontent.com/42512400/84761415-476b8880-afc1-11ea-9986-7eb5239803ce.png)
 
-![image](https://user-images.githubusercontent.com/42512400/84761894-032cb800-afc2-11ea-9bd7-fcec23097eed.png)
-
 ![image](https://user-images.githubusercontent.com/42512400/84761712-b943d200-afc1-11ea-843b-65fa8020ee9f.png)
+
+![image](https://user-images.githubusercontent.com/42512400/84761894-032cb800-afc2-11ea-9bd7-fcec23097eed.png)
 
 ## Tech/framework used
 
@@ -62,7 +62,7 @@ cd functions
 firebase serve --only functions
 ```
 
-#### Testing
+### Testing
 
 To run a basic test, simply run the command
 
