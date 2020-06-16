@@ -25,7 +25,7 @@ An application that helps users find the nearest health center around them. Buil
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 #### Development setup
 
@@ -45,16 +45,16 @@ REACT_APP_MEASUREMENT_ID: "YOUR_APP_MEASUREMENT_ID"
 REACT_APP_GRAPHQL_SERVER: "LINK TO YOUR GRAPHQL SERVER"
 ```
 
-After you have that set up run
+After you have that set up, run the following command
 
 ```sh
-npm install
+npm i
 npm run dev
 ```
 
 ### Graphql Playground
 
-To run the graphql playground locally symply run the code below <br />
+To run the graphql playground locally, simply run the code below <br />
 Note that you would need to get a service account key from google cloud console.
 
 ```sh
@@ -64,7 +64,7 @@ firebase serve --only functions
 
 #### Testing
 
-To run a basic test simply run the command
+To run a basic test, simply run the command
 
 ```
 npm t
@@ -75,7 +75,8 @@ npm t
 Here are possible improvements that might be added to this application with time
 
 - Improve the UI
-- Add view images and real time imformation features for each locations eg (if the hospital is currently opened and a contact information)
+- Add view images feature i.e if images for a location is available the users can view it, this will help users locate places faster
+- Add real time information feature for each locations eg (if the hospital is currently opened; a contact information)
 
 # Acknowledgments
 
