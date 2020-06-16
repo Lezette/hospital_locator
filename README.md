@@ -7,11 +7,9 @@ An application that helps users find the nearest health center around them. Buil
 
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/42512400/84674378-c493f080-af22-11ea-96d6-2c01afa5ec3f.png)
+![image](https://user-images.githubusercontent.com/42512400/84760958-ab418180-afc0-11ea-997c-9b48dfd0e3aa.png)
 
-![image](https://user-images.githubusercontent.com/42512400/84674553-002eba80-af23-11ea-8bf9-6cd6a5f3ec1c.png)
-
-![image](https://user-images.githubusercontent.com/42512400/84674627-189ed500-af23-11ea-973a-648ddf814a66.png)
+![image](https://user-images.githubusercontent.com/42512400/84761090-d6c46c00-afc0-11ea-9085-3e7f747c5a88.png)
 
 ## Tech/framework used
 
