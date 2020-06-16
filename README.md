@@ -70,6 +70,13 @@ To run a basic test simply run the command
 npm t
 ```
 
+### Additional Features
+
+Here are possible improvements that might be added to this application with time
+
+- Improve the UI
+- Add view images and real time imformation features for each locations eg (if the hospital is currently opened and a contact information)
+
 # Acknowledgments
 
 This project was created based on a coding challenge by [Enye](https://www.enye.tech/)
